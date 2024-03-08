@@ -11,6 +11,11 @@ M.on_attach = function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
     require("nvchad.signature").setup(client)
   end
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.buf.inlay_hint(bufnr, true)
+  end
 end
 
 -- disable semantic tokens
@@ -46,6 +51,9 @@ lspconfig.lua_ls.setup {
   on_init = M.on_init,
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+  opts = {
+    inlay_hints = { enabled = true },
+  },
 
   settings = {
     Lua = {
