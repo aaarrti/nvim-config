@@ -97,6 +97,11 @@ local default_plugins = {
     config = function()
       require "plugins.configs.lspconfig"
     end,
+    opts = {
+      inlay_hints = {
+        enabled = true,
+      },
+    },
   },
 
   -- load luasnips + cmp related in insert mode only
